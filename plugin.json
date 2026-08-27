@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ryu.help-center",
+  "version": "0.1.0",
+  "description": "A Ryu support workspace for resolving tickets, improving knowledge, and reviewing AI assistance.",
+  "author": {
+    "name": "Ryu",
+    "url": "https://ryuhq.com"
+  },
+  "homepage": "https://github.com/amajorai/ryu-help-center",
+  "repository": "https://github.com/amajorai/ryu-help-center",
+  "keywords": ["support", "tickets", "knowledge", "help center"],
+  "extensions": {
+    "com.ryuhq.ryu": {
+      "id": "@ryu/help-center",
+      "displayName": "Help Center"
+    }
+  }
+}
