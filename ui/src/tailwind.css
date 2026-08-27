@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "@ryu/ui/app-ui.css";
+@source "./";
+@source "../../../../packages/ui/src/components/badge.tsx";
+@source "../../../../packages/ui/src/components/button.tsx";
+@source "../../../../packages/ui/src/components/empty.tsx";
+@source "../../../../packages/ui/src/components/input.tsx";
+@source "../../../../packages/ui/src/components/spinner.tsx";
+@source "../../../../packages/ui/src/components/textarea.tsx";
+
+html,
+body,
+#ryu-plugin-root {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	font-size: 14px;
+	color: var(--foreground);
+	background: var(--background);
+}
+
+* {
+	border-color: var(--border);
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}
