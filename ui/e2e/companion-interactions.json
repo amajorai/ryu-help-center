@@ -1,0 +1,461 @@
+{
+  "version": 1,
+  "package": "help-center",
+  "scope": "complete",
+  "expectedRows": 33,
+  "selector": {
+    "spec": "e2e/help-center-workflow.spec.ts",
+    "config": "playwright.config.ts"
+  },
+  "evidenceBoundary": "The Help Center companion is rendered in Chromium against an isolated local window.ryu host fixture. The fixture persists Space documents, records exact storage/Space/model calls, and can fail selected operations once. Browser tests verify visible queue filters, ticket selection, durable document writes and readback, AI prompt/retrieval payloads, article lifecycle, activation retry, and recovery after save/retrieval failures. No live Core, customer, or model provider is contacted.",
+  "assertions": [
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/App.tsx",
+        "line": "145",
+        "component": "ActivationState",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "retries an empty Space activation and seeds linked sample records",
+      "assertionName": "Load sample workspace creates each sample document and remaps related article ids.",
+      "assertionMarker": "Loading samples persists all six records and remaps each ticket's article references."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/App.tsx",
+        "line": "148",
+        "component": "ActivationState",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Create first ticket"
+      },
+      "testTitle": "creates the first ticket from activation and reports host errors before retrying",
+      "assertionName": "Create first ticket recovers from a host rejection and persists the new ticket.",
+      "assertionMarker": "Retrying first-ticket creation persists one complete ticket after the rejected attempt."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/App.tsx",
+        "line": "157",
+        "component": "ActivationState",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "retries an empty Space activation and seeds linked sample records",
+      "assertionName": "Retry connection repeats failed Space creation and opens the first-ticket recovery state.",
+      "assertionMarker": "spaces.ensureSpace"
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/App.tsx",
+        "line": "393",
+        "component": "HelpCenterApp",
+        "tag": "InboxView",
+        "events": "onSelect"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "Selecting a queue row renders the matching ticket and requester context.",
+      "assertionMarker": "Selecting the active queue ticket renders its matching conversation and customer context."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/components/ArticleCard.tsx",
+        "line": "39",
+        "component": "ArticleCard",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Edit"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "Edit opens the selected persisted article in the editor with its saved values.",
+      "assertionMarker": "Edit reopens the persisted article with its saved title, body, and status."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/components/ResolutionRibbon.tsx",
+        "line": "67",
+        "component": "ResolutionRibbon",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Review, resolve, and reopen actions persist the correct ticket state transitions.",
+      "assertionMarker": "Review, Resolve, and Reopen each round-trip the ticket state through the Space host."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/components/TicketRow.tsx",
+        "line": "46",
+        "component": "TicketRow",
+        "tag": "RyuAppListItem",
+        "events": "onClick"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "Clicking a ticket row selects the matching persisted ticket.",
+      "assertionMarker": "Ticket row selection changes the conversation to the selected durable ticket."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/AgentView.tsx",
+        "line": "88",
+        "component": "AgentView",
+        "tag": "Input",
+        "events": "onChange",
+        "label_or_destination": "Tone"
+      },
+      "testTitle": "uses agent tone and guardrails for source-backed preview and retries retrieval failures",
+      "assertionName": "Tone is passed into the local model prompt for the customer preview.",
+      "assertionMarker": "The model request receives the tone selected in the rendered Agent settings."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/AgentView.tsx",
+        "line": "99",
+        "component": "AgentView",
+        "tag": "Textarea",
+        "events": "onChange",
+        "label_or_destination": "Guardrails"
+      },
+      "testTitle": "uses agent tone and guardrails for source-backed preview and retries retrieval failures",
+      "assertionName": "Guardrails are passed into the local model prompt for the customer preview.",
+      "assertionMarker": "The model request receives the guardrail text selected in the rendered Agent settings."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/AgentView.tsx",
+        "line": "128",
+        "component": "AgentView",
+        "tag": "Input",
+        "events": "onChange,onKeyDown",
+        "label_or_destination": "Customer preview question"
+      },
+      "testTitle": "uses agent tone and guardrails for source-backed preview and retries retrieval failures",
+      "assertionName": "Enter submits the exact customer question to Space retrieval and renders its cited answer.",
+      "assertionMarker": "Enter submits the trimmed customer question and renders the answer with its cited source."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/AgentView.tsx",
+        "line": "139",
+        "component": "AgentView",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "uses agent tone and guardrails for source-backed preview and retries retrieval failures",
+      "assertionName": "Ask renders retrieval failures and retries without repeating an earlier answer.",
+      "assertionMarker": "Ask surfaces retrieval failure without calling the model, then retries into a human-handoff answer."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/InboxView.tsx",
+        "line": "90",
+        "component": "InboxView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "New ticket"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "New ticket calls the host with the Help Center Space and saves the resulting record.",
+      "assertionMarker": "New ticket creates and reads back the complete ticket document through the host."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/InboxView.tsx",
+        "line": "102",
+        "component": "InboxView",
+        "tag": "InputGroupInput",
+        "events": "onChange",
+        "label_or_destination": "Search Help Center tickets"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "Ticket search matches requester data and clears without losing the queue.",
+      "assertionMarker": "Requester email search narrows the queue to the matching ticket and clearing restores the queue."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/InboxView.tsx",
+        "line": "109",
+        "component": "InboxView",
+        "tag": "Tabs",
+        "events": "onValueChange"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "Changing queue filter updates the visible records for every filter option.",
+      "assertionMarker": "Each queue-filter value produces its expected ticket set, including resolved records."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/InboxView.tsx",
+        "line": "120",
+        "component": "InboxView",
+        "tag": "TabsTrigger",
+        "events": ""
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "Rendered filter tabs can be selected and expose the matching ticket rows.",
+      "assertionMarker": "Clicking each rendered filter tab exposes only the matching visible ticket rows."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/InboxView.tsx",
+        "line": "132",
+        "component": "InboxView",
+        "tag": "TicketRow",
+        "events": "onSelect"
+      },
+      "testTitle": "filters inbox records, selects a ticket, and creates a durable ticket",
+      "assertionName": "The inbox renders a selectable row for every matching ticket.",
+      "assertionMarker": "Matching inbox rows are visible and selecting one opens its conversation."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "121",
+        "component": "KnowledgeView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "New article"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "New article opens an editor and refuses empty required fields before host writes.",
+      "assertionMarker": "New article requires both title and body before a createDoc request is made."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "135",
+        "component": "KnowledgeView",
+        "tag": "InputGroupInput",
+        "events": "onChange",
+        "label_or_destination": "Search Help Center knowledge"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "Article search matches saved title/body text and restores the full result set when cleared.",
+      "assertionMarker": "Knowledge search finds the persisted article by title and clearing restores matching status results."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "143",
+        "component": "KnowledgeView",
+        "tag": "NativeSelect",
+        "events": "onChange",
+        "label_or_destination": "Filter knowledge articles"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "Status filtering separates saved published articles from drafts.",
+      "assertionMarker": "The status filter hides a published result from Drafts and restores it under Published."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "167",
+        "component": "KnowledgeView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Close"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "Close discards an unsaved article draft without a host write.",
+      "assertionMarker": "Close removes the unsaved editor and leaves the Space without a created draft."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "176",
+        "component": "KnowledgeView",
+        "tag": "Input",
+        "events": "onChange",
+        "label_or_destination": "Article title"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "The article title reaches the durable document source and host title.",
+      "assertionMarker": "The saved article title is identical in the Space title field and serialized article."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "184",
+        "component": "KnowledgeView",
+        "tag": "Textarea",
+        "events": "onChange",
+        "label_or_destination": "Article body"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "The article body reaches the durable document source and rendered result.",
+      "assertionMarker": "The saved article body and status survive host readback after create and edit."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "194",
+        "component": "KnowledgeView",
+        "tag": "NativeSelect",
+        "events": "onChange",
+        "label_or_destination": "Article status"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "The selected article status is persisted and controls the visible filter.",
+      "assertionMarker": "Published create and draft edit statuses persist and drive the rendered status filter."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/KnowledgeView.tsx",
+        "line": "209",
+        "component": "KnowledgeView",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "creates, searches, filters, and retries durable knowledge article edits",
+      "assertionName": "Save creates or updates only after validation and leaves failed updates retryable.",
+      "assertionMarker": "A rejected article update leaves the old card visible and a retry saves the same id."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "208",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Run triage retrieves bounded Space context, requests classification, and persists normalized output.",
+      "assertionMarker": "Run triage sends the exact Space search and classification result to durable ticket storage."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "271",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Reply"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Reply selects a customer-visible local reply composer.",
+      "assertionMarker": "Reply mode records an agent message with internal=false and the exact reply body."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "279",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Internal note"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Internal note mode records a non-customer-visible system message.",
+      "assertionMarker": "Internal note mode records the exact note as a system message with internal=true."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "288",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Draft with AI retrieves article context and fills the human-review composer.",
+      "assertionMarker": "Draft with AI fills the composer from the fixture model and preserves the human-review guardrail."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "298",
+        "component": "TicketView",
+        "tag": "Textarea",
+        "events": "onChange",
+        "label_or_destination": "Reply Internal note"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Composer input text is persisted exactly in the selected reply or internal-note mode.",
+      "assertionMarker": "Composer text is saved exactly once with the selected reply or internal-note visibility."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "315",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Add reply and Add note append distinct messages through the Space update operation.",
+      "assertionMarker": "Add reply and Add note append separate persisted messages without external delivery."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "342",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Create article draft"
+      },
+      "testTitle": "turns a ticket answer into a linked article and opens its related article",
+      "assertionName": "Create article draft carries ticket messages, tags, and source identity to the Space.",
+      "assertionMarker": "Create article draft persists its source ticket, tags, and conversation answer as a draft."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "350",
+        "component": "TicketView",
+        "tag": "Button",
+        "events": "onClick",
+        "label_or_destination": "Browse"
+      },
+      "testTitle": "triages, reviews, replies, adds an internal note, resolves, and reopens a ticket",
+      "assertionName": "Browse navigates from the selected ticket into the rendered Knowledge view.",
+      "assertionMarker": "Browse opens Knowledge from the active ticket conversation."
+    },
+    {
+      "row": {
+        "package": "help-center",
+        "source_file": "apps-store/help-center/ui/src/views/TicketView.tsx",
+        "line": "364",
+        "component": "TicketView",
+        "tag": "RyuAppListItem",
+        "events": "onClick"
+      },
+      "testTitle": "turns a ticket answer into a linked article and opens its related article",
+      "assertionName": "Selecting a related article routes to Knowledge and renders the selected persisted title.",
+      "assertionMarker": "Selecting a related article opens Knowledge with the persisted source article visible."
+    }
+  ]
+}
