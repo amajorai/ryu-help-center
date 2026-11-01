@@ -1,0 +1,23 @@
+.row.row {
+	display: grid;
+	grid-template-columns: 2.25rem minmax(0, 1fr);
+	align-items: start;
+}
+.subtitle {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.requester {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.accessories.accessories {
+	flex-wrap: wrap;
+	min-width: 0;
+	white-space: normal;
+}
+.nowrap {
+	white-space: nowrap;
+}
